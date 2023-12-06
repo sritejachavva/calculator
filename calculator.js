@@ -151,6 +151,7 @@ let operate = function(num1, operand, num2){
 /***********
  * Logic for operations
  * 1) Check for sign and assign proper sub function (add,multiply, etc)
+ * 2) Call operate() whenever an operand is pressed
  * 
  * 
  * 
