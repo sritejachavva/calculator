@@ -12,6 +12,16 @@ let createButtons = function(){
     let calculator_display = document.body.querySelector(".display");
     let number_button = document.createElement('button');
     let buttons = document.createElement('div');
+
+    let inputField = document.createElement('input');
+
+    inputField.setAttribute("type","number");
+    inputField.autofocus = true;
+    calculator_display.appendChild(inputField);
+    inputField.style.cssText = 'background-color: lightgray; display:flex; width:100%; height:100%; font-size:25px;'
+
+
+
     
     let numbers = document.createElement('div');
     numbers.classList.add('numbers');
@@ -35,7 +45,8 @@ let createButtons = function(){
 
     let number_click = function(){
         var fired_button = this.value;
-        alert(fired_button);
+        inputField.value += fired_button;
+
         return fired_button;
     }
 
@@ -191,6 +202,29 @@ let operate = function(num1, operand, num2){
  * 
  * 
  *  ***********/
+    let multiply_i = 0;
+    let divide_i = 0;
+    let add_i = 0;
+    let subtract_i = 0;
+
+
+
+    if (temp_str.includes("+")) {
+        add_i = 1;
+        return temp_str.split("+")[0]  +  temp_str.split("+")[1];
+    }
+    else if (temp_str.includes("-")) {
+        return temp_str.split("-")[0]  -  temp_str.split("-")[1];
+    } else if (temp_str.includes("/")) {
+        return temp_str.split("/")[0]  /  temp_str.split("/")[1];
+    
+    } else if (temp_str.includes("x")) {
+        return temp_str.split("x")[0]  *  temp_str.split("x")[1];
+
+    }
+
+
+
 
 }
 
@@ -218,7 +252,7 @@ let addInput = function(){
 
 
 
-addInput();
+//addInput();
 createButtons();
 
 //readInputs();
