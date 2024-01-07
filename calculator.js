@@ -8,7 +8,7 @@ Step 1b) Create operator buttons
 
 let createButtons = function(){
     let calculator_display = document.body.querySelector(".display");
-    let number_button = document.createElement('div');
+    let number_button = document.createElement('button');
     let buttons = document.createElement('div');
     
     let numbers = document.createElement('div');
@@ -20,6 +20,7 @@ let createButtons = function(){
     buttons.style.cssText='display:inline-flex; width:100%;'
     calculator_display.parentNode.appendChild(buttons);
 
+    number_button.setAttribute("type","button");
     number_button.classList.add('numeric-button');
     number_button.style.cssText = 'display: flex; background-color: white; color: black;  width: 30%; border-style: solid; border-width:5px; justify-content: center; align-items: center; margin: 5px;'
     let button_row = document.createElement('div');
@@ -43,9 +44,28 @@ let createButtons = function(){
 
             let templabel = numeric_label.cloneNode(true);
             templabel.textContent = `${(i*3)+j+1}`;
+            //templabel.classList.add(`button_num`);
+
+            templabel.classList.add(`digit_${(i*3)+j+1}`);
+            tempbutton.value = (i*3)+j+1;
             tempbutton.appendChild(templabel);
         } 
     }
+    // add a button for 0
+    let temprow = button_row.cloneNode(true);
+    temprow.classList.add(`row-number-${0}`)
+    numbers.appendChild(temprow);
+    let tempbutton = number_button.cloneNode(true);
+    tempbutton.value = 0;
+    temprow.appendChild(tempbutton);
+    let templabel = numeric_label.cloneNode(true);
+    templabel.textContent = `0`
+    templabel.classList.add(`digit_0`);
+    tempbutton
+    tempbutton.appendChild(templabel);
+
+
+
     let createOperators = function(){
     
         let operators = document.createElement('div');
@@ -160,5 +180,23 @@ let operate = function(num1, operand, num2){
 
 }
 
+let addInput = function(){
+    let calculator_display = document.body.querySelector(".display");
+    let inputField = document.createElement('input');
+
+    inputField.setAttribute("type","number");
+    inputField.autofocus = true;
+    calculator_display.appendChild(inputField);
+    inputField.style.cssText = 'background-color: lightgray; display:flex; width:100%; height:100%; font-size:25px;'
+
+    ///// listen to button inputs
+
+
+
+}
+
+
 
 createButtons();
+addInput();
+//readInputs();

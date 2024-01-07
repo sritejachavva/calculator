@@ -19,3 +19,10 @@
     justify-content: center;
     
 }
+
+
+#blink_effect {
+    color: orange;
+    font-size: 20 px;
+    transition: 1.5s;
+}  
