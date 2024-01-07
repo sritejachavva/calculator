@@ -6,6 +6,8 @@ Step 1b) Create operator buttons
 
 */
 
+var current_display;
+
 let createButtons = function(){
     let calculator_display = document.body.querySelector(".display");
     let number_button = document.createElement('button');
@@ -29,6 +31,16 @@ let createButtons = function(){
     
     buttons.appendChild(numbers);
 
+
+
+    let number_click = function(){
+        var fired_button = this.value;
+        alert(fired_button);
+        return fired_button;
+    }
+
+
+
     let numeric_label = document.createElement('p');
     numeric_label.classList.add('numeric-label');
     numeric_label.style.cssText = ' color:black; font-size: 12px;'
@@ -48,6 +60,8 @@ let createButtons = function(){
 
             templabel.classList.add(`digit_${(i*3)+j+1}`);
             tempbutton.value = (i*3)+j+1;
+            current_display += tempbutton.addEventListener('click', number_click);
+
             tempbutton.appendChild(templabel);
         } 
     }
@@ -189,14 +203,22 @@ let addInput = function(){
     calculator_display.appendChild(inputField);
     inputField.style.cssText = 'background-color: lightgray; display:flex; width:100%; height:100%; font-size:25px;'
 
-    ///// listen to button inputs
-
+    // let number_click = function(){
+    //     var fired_button = this.value;
+    //     alert("here");
+    //     alert(fired_button);
+    // }
+    // ///// listen to button inputs
+    // let numericButtons = document.body.querySelectorAll(".numeric-button");
+    // numericButtons.addEventListener('click', number_click);
+    
 
 
 }
 
 
 
-createButtons();
 addInput();
+createButtons();
+
 //readInputs();
