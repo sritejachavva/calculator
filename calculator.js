@@ -46,7 +46,9 @@ let createButtons = function(){
         } else if (temp_str.includes("x")) {
             inputField.value=Number(temp_str.split("x")[0])  *  Number(temp_str.split("x")[1]);
             return Number(temp_str.split("x")[0])  *  Number(temp_str.split("x")[1]);
-    
+        } else if (temp_str.includes("*")) {
+            inputField.value=Number(temp_str.split("*")[0])  *  Number(temp_str.split("*")[1]);
+            return Number(temp_str.split("*")[0])  *  Number(temp_str.split("*")[1]);
         }
     }
 
@@ -75,6 +77,9 @@ let createButtons = function(){
                 inputField.value=Number(temp_str.split("x")[0])  *  Number(temp_str.split("x")[1]);
                 return Number(temp_str.split("x")[0])  *  Number(temp_str.split("x")[1]);
         
+            } else if (temp_str.includes("*")) {
+                inputField.value=Number(temp_str.split("*")[0])  *  Number(temp_str.split("*")[1]);
+                return Number(temp_str.split("*")[0])  *  Number(temp_str.split("*")[1]);
             }
         }
     }
