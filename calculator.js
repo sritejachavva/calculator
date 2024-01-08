@@ -14,9 +14,12 @@ let createButtons = function(){
     let buttons = document.createElement('div');
 
     let inputField = document.createElement('input');
+    
     inputField.Id = 'display_field';
 
     inputField.setAttribute("type","text");
+    inputField.textContent = "7";
+    inputField.value = "7";
     inputField.autofocus = true;
     calculator_display.appendChild(inputField);
     inputField.style.cssText = 'background-color: lightgray; display:flex; width:100%; height:100%; font-size:25px;'
@@ -24,29 +27,66 @@ let createButtons = function(){
 
     let operate = function(){
 
-        alert(inputField.value);
         temp_str = inputField.value;
         if (typeof temp_str != 'string'){
+            inputField.value = "";
             return;
         }
         if (temp_str.includes("+")) {
-            alert('plus');
             inputField.value = Number(temp_str.split("+")[0])  +  Number(temp_str.split("+")[1]);
             return Number(temp_str.split("+")[0])  +  Number(temp_str.split("+")[1]);
         }
         else if (temp_str.includes("-")) {
-            alert('minus');
+            inputField.value = Number(temp_str.split("-")[0])  -  Number(temp_str.split("-")[1]);
             return temp_str.split("-")[0]  -  temp_str.split("-")[1];
         } else if (temp_str.includes("/")) {
-            alert('divide');
+            inputField.value = Number(temp_str.split("/")[0])  / Number(temp_str.split("/")[1]);
             return temp_str.split("/")[0]  /  temp_str.split("/")[1];
         
         } else if (temp_str.includes("x")) {
-            alert('multiply');
             inputField.value=Number(temp_str.split("x")[0])  *  Number(temp_str.split("x")[1]);
             return Number(temp_str.split("x")[0])  *  Number(temp_str.split("x")[1]);
     
         }
+    }
+
+    let operate_key = function(){
+
+        //alert(e.keyCode);
+        if (evt.keyCode == 13){
+            alert("here");
+        
+            temp_str = inputField.value;
+
+            if (typeof temp_str != 'string'){
+                inputField.value = "";
+                return;
+            }
+            if (temp_str.includes("+")) {
+                inputField.value = Number(temp_str.split("+")[0])  +  Number(temp_str.split("+")[1]);
+                return Number(temp_str.split("+")[0])  +  Number(temp_str.split("+")[1]);
+            }
+            else if (temp_str.includes("-")) {
+                inputField.value = Number(temp_str.split("-")[0])  -  Number(temp_str.split("-")[1]);
+                return temp_str.split("-")[0]  -  temp_str.split("-")[1];
+            } else if (temp_str.includes("/")) {
+                inputField.value = Number(temp_str.split("/")[0])  / Number(temp_str.split("/")[1]);
+                return temp_str.split("/")[0]  /  temp_str.split("/")[1];
+            
+            } else if (temp_str.includes("x")) {
+                inputField.value=Number(temp_str.split("x")[0])  *  Number(temp_str.split("x")[1]);
+                return Number(temp_str.split("x")[0])  *  Number(temp_str.split("x")[1]);
+        
+            }
+        }
+    }
+
+    current_display.addEventListener('keydown', operate_key);
+
+    
+
+    let cancel = function(){
+        inputField.value = ""; 
     }
 
     
@@ -99,7 +139,7 @@ let createButtons = function(){
 
             templabel.classList.add(`digit_${(i*3)+j+1}`);
             tempbutton.value = (i*3)+j+1;
-            current_display += tempbutton.addEventListener('click', number_click);
+            inputField.value += tempbutton.addEventListener('click', number_click);
 
             tempbutton.appendChild(templabel);
         } 
@@ -223,16 +263,18 @@ let createButtons = function(){
                 button_character.style.cssText = ' color:black; font-size: 15px;'
                 button_character.value = "=";
                 button_character.textContent = "=";
-                alert(calculator_display.value);
-                button_character.addEventListener('click', operate);;
+                //alert(calculator_display.value);
+                button_character.addEventListener('click', operate);
 
                 operator_button.appendChild(button_character);
 
             }
             else if (but_type == 'cancel'){
-                let button_character = document.createElement("p");
+                let button_character = document.createElement("button");
                 button_character.style.cssText = ' color:black; font-size: 15px;'
                 button_character.textContent = "c"
+                button_character.value = "c";
+                button_character.addEventListener('click', cancel);;
                 operator_button.appendChild(button_character);
             }
               
@@ -247,6 +289,7 @@ let createButtons = function(){
         
         addButton('divide');
         addButton('cancel');
+        inputField.value = "";
     }
 
     createOperators();
@@ -285,7 +328,7 @@ let addInput = function(){
     let calculator_display = document.body.querySelector(".display");
     let inputField = document.createElement('input');
 
-    inputField.setAttribute("type","number");
+    inputField.setAttribute("type","text");
     inputField.autofocus = true;
     calculator_display.appendChild(inputField);
     inputField.style.cssText = 'background-color: lightgray; display:flex; width:100%; height:100%; font-size:25px;'
@@ -298,8 +341,6 @@ let addInput = function(){
     // ///// listen to button inputs
     // let numericButtons = document.body.querySelectorAll(".numeric-button");
     // numericButtons.addEventListener('click', number_click);
-    
-
 
 }
 
@@ -307,5 +348,7 @@ let addInput = function(){
 
 //addInput();
 createButtons();
+
+
 
 //readInputs();
