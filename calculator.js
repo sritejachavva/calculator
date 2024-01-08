@@ -50,11 +50,9 @@ let createButtons = function(){
         }
     }
 
-    let operate_key = function(){
+    let operate_key = function(e){
 
-        //alert(e.keyCode);
-        if (evt.keyCode == 13){
-            alert("here");
+        if (e.keyCode == 13){
         
             temp_str = inputField.value;
 
@@ -81,7 +79,7 @@ let createButtons = function(){
         }
     }
 
-    current_display.addEventListener('keydown', operate_key);
+    document.body.addEventListener('keydown', operate_key);
 
     
 
